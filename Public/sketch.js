@@ -12,12 +12,10 @@ let wave = [];
 const USER = 0;
 const FOURIER = 1;
 
-let drawing = [];
 let state = -1;
 
 function mousePressed(){
   state = USER;
-  drawing = [];
   x = [];
   t = 0;
   wave = [];
@@ -28,12 +26,6 @@ function mouseReleased() {
 
   state = FOURIER;
 
-  const skip = 2;
-
-  for(let i = 0; i < drawing.length; i += skip) {
-    x.push(new Complex(drawing[i].x, drawing[i].y, BINOMIAL));
-  }
-
   X = dft(x);
 
   console.log(`N = ${X.length}`);
@@ -43,9 +35,6 @@ function mouseReleased() {
   crear_epycicles(X);
 
   dt = TWO_PI / X.length;
-
-  
-
 
 }
 
@@ -63,14 +52,14 @@ function draw() {
 
   if(state == USER) {
 
-    let point = createVector(mouseX - width /2, mouseY - height / 2);
-    drawing.push(point);
+    //Podria evaluar cargar cada dos valores en vez de uno
+    x.push(new Complex(mouseX - width/2, mouseY - height/2, BINOMIAL));
 
     stroke(255);
     noFill();
     beginShape();
-    for (let v of drawing) {
-      vertex(v.x + width / 2, v.y + height / 2);
+    for (let c of x) {
+      vertex(c.a + width / 2, c.b + height / 2);
     }
     endShape();
 
@@ -133,7 +122,7 @@ function crear_epycicles(X) {
 
 }
 
-function show_epycicles(X){
+function show_epycicles(){
 
   let i;
 
@@ -154,17 +143,12 @@ function show_epycicles(X){
 
 function show_wave() {
 
-  
-
-  
   beginShape();
   stroke(255);
   noFill();
 
-  //line(epycicle.x , epycicle.y, 200, wave[0]);
-
   for(let i = 0; i < wave.length; i++) {
-    //vertex(width / 2 + 100 + i, wave[i]);
+    
     vertex(wave[i].x, wave[i].y);
   }
 
