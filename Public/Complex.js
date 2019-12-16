@@ -29,25 +29,21 @@ class Complex {
 
     }
 
-    poltobin(z) {
+    static poltobin(z) {
 
         if(z.mode == BINOMIAL) {
             return z;
         }
 
-        //console.log("error");
-
         let re = z.a * cos(z.b);
         let im = z.a * sin(z.b);
-
-        //console.log(`Conversion: ${re} + ${im}i`);
 
         return new Complex(re, im, BINOMIAL);
 
     }
 
-    bintopol(z) {
-
+    static bintopol(z) {
+ 
         if(z.mode == POLAR) {
             return z;
         }
@@ -61,8 +57,8 @@ class Complex {
 
     mult(z, mode) {
 
-        let z1 = this.bintopol(this);
-        let z2 = this.bintopol(z);
+        let z1 = Complex.bintopol(this);
+        let z2 = Complex.bintopol(z);
 
         let r = z1.a * z2.a;
         let phi = z1.b + z2.b;
@@ -76,14 +72,14 @@ class Complex {
         if(mode == POLAR) {
             return w;
         } else {
-            return this.poltobin(w);
+            return Complex.poltobin(w);
         }
     }
 
     add(z, mode) {
 
-        let z1 = this.poltobin(this);
-        let z2 = this.poltobin(z);
+        let z1 = Complex.poltobin(this);
+        let z2 = Complex.poltobin(z);
 
         let re = z1.a + z2.a;
         let im = z1.b + z2.b;
@@ -98,7 +94,7 @@ class Complex {
         if(mode == BINOMIAL) {
             return w;
         } else {
-            return this.bintopol(w);
+            return Complex.bintopol(w);
         }
 
     }
