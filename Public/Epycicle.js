@@ -15,22 +15,21 @@ class Epycicle {
 
     }
 
-    update() {
+    update(t) {
+
 
         this.x = this.A * cos(this.f * t + this.phi) + this.x_center;
-        this.y = this.A * sin(this.f * t + this.phi ) + this.y_center;
+        this.y = this.A * sin(this.f * t + this.phi) + this.y_center;
 
     }
 
-    show() {
-
-        //translate(this.x_center, this.y_center);
+    show(t) {
 
         stroke(255, 100);
         noFill();
         ellipse(this.x_center, this.y_center, this.A * 2);
 
-        this.update();
+        this.update(t);
 
         //Dibujo linea
         stroke(255);
