@@ -37,7 +37,7 @@ class Fourier {
 
   for (let k = 0; k < N; k++) {
 
-    Xk = new Complex(0, 0, BINOMIAL);
+    Xk = new Complex(0, 0);
 
     for (let n = 0; n < N; n++) {
 
@@ -51,8 +51,6 @@ class Fourier {
 
     //Divido modulo entre N
     Xk.a = Xk.a / N;
-
-    
 
     let f = k;
     let A = Xk.a;
@@ -73,10 +71,14 @@ crear_epycicles(x, y) {
 
   if(x == null) {
     x_center = width / 2;
+  } else {
+    x_center = x;
   }
 
   if(y == null) {
     y_center = height / 2;
+  } else{
+    y_center = y;
   }
   
 
@@ -97,7 +99,7 @@ show_epycicles(isWave){
 
   let i;
 
-  
+  let v;
 
   for(i = 0; i < this.epycicles.length; i++){
 
@@ -110,8 +112,10 @@ show_epycicles(isWave){
   
   }
 
+  v = createVector(this.epycicles[i - 1].x, this.epycicles[i - 1].y);
+
   if(isWave == true) {
-    this.wave.push(createVector(this.epycicles[i - 1].x, this.epycicles[i - 1].y));
+    this.wave.push(v);
     this.show_wave();
   } else{
     this.wave = [];
@@ -125,7 +129,7 @@ show_epycicles(isWave){
     this.wave = [];
   }
 
-  
+  return v;
 
 }
 

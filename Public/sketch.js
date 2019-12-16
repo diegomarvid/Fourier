@@ -36,7 +36,7 @@ function draw() {
   if(state == USER) {
 
     //Podria evaluar cargar cada dos valores en vez de uno
-    x.push(new Complex(mouseX - width/2, mouseY - height/2, BINOMIAL));
+    x.push(new Complex(mouseX - width/2, mouseY - height/2));
 
     stroke(255);
     noFill();

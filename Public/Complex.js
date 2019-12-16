@@ -17,6 +17,10 @@ class Complex {
         this.b = b;
         this.mode = mode;
 
+        if(mode = null) {
+            this.mode = BINOMIAL;
+        }
+
         if(this.mode == BINOMIAL) {
             this.str = `${this.a} + ${this.b}i`;
         } else {
