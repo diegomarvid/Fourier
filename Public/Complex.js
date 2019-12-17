@@ -99,6 +99,32 @@ class Complex {
 
     }
 
+    print(mode) {
+
+        if(mode == null) {
+            
+            console.log(this.str);
+
+        }else if(mode == BINOMIAL) {
+
+            if(this.mode == BINOMIAL) {
+                console.log(this.str);
+            } else{
+                console.log(Complex.poltobin(this).str);
+            }
+
+        } else if(mode == POLAR) {
+
+            if(this.mode == POLAR) {
+                console.log(this.str) 
+            } else{
+                console.log(Complex.bintopol(this).str);
+            }
+
+        }
+        
+    }
+
 
 
 }
