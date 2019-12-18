@@ -42,21 +42,26 @@ function setup() {
   
 }
 
+function keyPressed() {
+
+  // 's'
+  if(keyCode === 83) {
+    F.export('dft.txt');
+  }
+
+}
+
 function draw() {
 
   background(0);
 
   if(state == USER) {
 
-    
-
-    //Podria evaluar cargar cada dos valores en vez de uno
     if(counter % resolution == 0){
       x.push(new Complex(mouseX - width/2, mouseY - height/2));
     }
 
     counter++;
-
 
     stroke(255);
     noFill();
@@ -68,38 +73,10 @@ function draw() {
 
   } else if(state == FOURIER) {
 
-    
-
     F.show_epycicles(true);
 
   }
 
  
 }
-
-function escribir_txt() {
-
-  writer = createWriter('dft.txt');
-
-  F.dft.sort((a, b) => a.f - b.f);
-
-  let c = new Complex(0, 0, POLAR);
-
-  for(let i = 0; i < F.N; i++) {
-    
-    c.a = F.dft[i].A;
-    c.b = F.dft[i].phi;
-
-    writer.write(Complex.poltobin(c).str + "\n");
-  }
-
-  F.dft.sort((a, b) => b.A - a.A);
-
-  writer.close();
-
-
-}
-
-
-
 

@@ -152,6 +152,28 @@ show_wave() {
 
 }
 
+export(filename) {
+ 
+  let writer = createWriter(filename);
+
+  F.dft.sort((a, b) => a.f - b.f);
+
+  let c = new Complex(0, 0, POLAR);
+
+  for (let i = 0; i < F.N; i++) {
+
+    c.a = F.dft[i].A;
+    c.b = F.dft[i].phi;
+
+    writer.write(Complex.poltobin(c).str + "\n");
+  }
+
+  F.dft.sort((a, b) => b.A - a.A);
+
+  writer.close();
+ 
+}
+
 
 }
 
