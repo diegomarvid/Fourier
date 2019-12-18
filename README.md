@@ -13,7 +13,7 @@ parámetros de coordenadas de la siguiente forma:
 
 > Let F = new Fourier(x, 200, 300);
 
-Donde 200 es la coordenada en el eje real y 300 en el eje imaginario. 
+Donde 200 es la coordenada en el eje 'x' y 300 en el eje 'y'. 
 
 Para poder observar los epicycles de la transformada se hace:
 
@@ -23,6 +23,14 @@ Si además se quiere dibujar el camino que hace para poder observar la forma gen
 se debe llamar con el parámetro true. 
 
 > F.show_epycicles(true);
+
+Para poder exportar la dft existe la funcion export:
+
+> F.export('dft.txt');
+
+El formato del texto exportado es de la forma %f + %fi/n
+Esto significa que por cada linea se encuentra el complejo asociado de la transformada discreta
+de Fourier. La primera linea corresponde a frecuencia cero y asi en adelante.
 
 
 
