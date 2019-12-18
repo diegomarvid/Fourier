@@ -54,5 +54,32 @@ El formato del texto exportado es de la forma `%f + %fi/n`
 Esto significa que por cada linea se encuentra el complejo asociado de la transformada discreta
 de Fourier. La primera linea corresponde a frecuencia cero y asi en adelante.
 
+Para poder acceder a los valores desde un lenguaje numerico como MATLAB se puede implementar el siguiente codigo:
+
+```matlab
+
+clear;
+
+fileID = fopen("dft.txt" , 'r');
+
+formatSpec = "%f + %fi\n";
+
+sizeA = [2 inf];
+
+A = fscanf(fileID, formatSpec, sizeA);
+
+N = size(A, 2);
+
+X = zeros(1, N);
+
+for n = 1:N
+   X(n) = A(1,n) + A(2, n)*j; 
+end
+
+fclose(fileID);
+
+```
+
+Una vez que se tiene el vector X se puede utilizar el lenguaje para aprovechar sus graficas o poder realizar operaciones en la transformada como filtrar altas frecuencias.
 
 
